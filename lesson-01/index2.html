@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Домашняя работа 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css"
+    />
+  </head>
+  <body>
+    <div id="app" class="card column is-one-fifth">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img v-bind:src="image" alt="Placeholder image" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img v-bind:src="image" alt="Placeholder image" />
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">{{name}}</p>
+            <p class="subtitle is-6">@{{login}}</p>
+          </div>
+        </div>
+
+        <div class="content">
+          <p class="subtitle is-6">{{email}}</p>
+          Всем привет, заходите на мой сайт.
+          <a href="https://www.google.ru/">Мой сайт</a>.
+          <a href="#">#кролик</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          image: "./img/rabbit.jpg",
+          name: " Кролик Сергеевич",
+          login: "krolik23",
+          email: "krolik23@gmail.com",
+        },
+      });
+    </script>
+  </body>
+</html>
