@@ -8,8 +8,11 @@
   </head>
   <body>
     <div id="app">
-      <input type="text" v-model="searchWord" />
-      <a href="" v-for="article in searchArticle">{{article.name}}</a>
+      <input type="text" v-model.lazy="searchWord" />
+      <div v-for="article in searchArticle">
+        <a :href="article.url">{{article.name}}</a>
+        <img :src="article.image" alt="" />
+      </div>
     </div>
 
     <script>
