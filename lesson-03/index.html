@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Домашняя работа 3</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="searchWord" />
+      <a href="" v-for="article in searchArticle">{{article.name}}</a>
+    </div>
+
+    <script>
+      let app = new Vue({
+        el: "#app",
+        data: {
+          searchWord: "",
+          articles: [
+            {
+              name:
+                "Зоологи впервые записали «щебетанье» самой маленькой дикой кошки",
+              url:
+                "https://mir24.tv/news/16410487/zoologi-vpervye-zapisali-shchebetane-samoi-malenkoi-koshki",
+              image: "/img/art1.jpg",
+            },
+            {
+              name:
+                "В Петербурге волонтеры спасли енотовидную собаку, застрявшую в подвале",
+              url:
+                "https://mir24.tv/news/16342895/v-sankt-peterburge-volontery-spasli-enotovidnuyu-sobaku",
+              image: "/img/art2.jpg",
+            },
+            {
+              name:
+                "Москвичам запретят держать в квартирах медведей, лемуров и сов",
+              url:
+                "https://mir24.tv/news/16086100/moskvicham-zapretyat-derzhat-v-kvartirah-medvedei-lemurov-i-sov",
+              image: "/img/art3.jpg",
+            },
+            {
+              name: "Прикосновение к обезьянам Гибралтара стало преступлением",
+              url:
+                "https://mir24.tv/news/16412013/prikosnovenie-k-obezyanam-gibraltara-stalo-prestupleniem",
+              image: "/img/art4.jpg",
+            },
+          ],
+        },
+        computed: {
+          searchArticle: function () {
+            const search = this.searchWord;
+            if (search == "") {
+              return [];
+            }
+
+            let filterArticles = this.articles.filter(function (article) {
+              if (article.name.includes(search)) {
+                return true;
+              }
+              return false;
+            });
+
+            return filterArticles;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
