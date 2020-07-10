@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Домашняя работа 4</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-for="service in services">
+        <input type="checkbox" v-model="service.checked" />
+        {{service.name}}
+      </div>
+      <p>Итого: {{showSumm}} рублей</p>
+    </div>
+    <script>
+      let app = new Vue({
+        el: "#app",
+        data: {
+          services: [
+            { name: "Создание сайта-визитки", price: 18000, checked: false },
+            { name: "Продвижение сайтов", price: 15000, checked: false },
+            { name: "Сайт под ключ", price: 55300, checked: false },
+            { name: "Дизайн сайта", price: 7900, checked: false },
+            { name: "Поддержка сайтов", price: 3700, checked: false },
+          ],
+        },
+        computed: {
+          showSumm: function () {
+            let summ = 0;
+            for (let i = 0; i < this.services.length; i++) {
+              if (this.services[i].checked) {
+                summ += this.services[i].price;
+              }
+            }
+            return summ;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
