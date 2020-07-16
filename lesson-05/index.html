@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Домашняя работа 5</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css"
+    />
+  </head>
+  <body>
+    <!-- <div id="app">
+      <button v-for="tab in tabs" v-on:click="currentTab = tab">
+        {{tab}}
+      </button>
+      <component v-bind:is="currentTabComponent"></component>
+    </div> -->
+
+    <div id="app">
+      <div class="tabs">
+        <ul>
+          <li v-for="tab in tabs" :class="currentTab == tab ? 'is-active' : ''">
+            <a v-on:click="currentTab = tab">{{tab}}</a>
+          </li>
+        </ul>
+      </div>
+      <component v-bind:is="currentTabComponent"></component>
+    </div>
+
+    <script>
+      Vue.component("tab-главная", {
+        template: "<div>Компонент главной страницы</div>",
+      });
+      Vue.component("tab-проекты", {
+        template: "<div>Компонент страницы проектов</div>",
+      });
+      Vue.component("tab-услуги", {
+        template: "<div>Компонент страницы услуг</div>",
+      });
+      Vue.component("tab-контакты", {
+        template: "<div>Компонент страницы контактов</div>",
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          currentTab: "Главная",
+          tabs: ["Главная", "Проекты", "Услуги", "Контакты"],
+        },
+        computed: {
+          currentTabComponent: function () {
+            return "tab-" + this.currentTab.toLowerCase();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
