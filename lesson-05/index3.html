@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Домашняя работа 5(3)</title>
+  </head>
+  <body>
+    <div id="app">
+      <gallery></gallery>
+    </div>
+    <script>
+      Vue.component("add-in-gallery", {
+        props: ["addpicture"],
+        data: function () {
+          return {
+            picture: { name: "", url: "" },
+          };
+        },
+        template: `<div>
+                      <input type="text" v-model="picture.name" placeholder="имя картинки" />
+                      <input type="text" v-model="picture.url" placeholder="url картинки"/>
+                      <button  v-on:click="addpicture({name:picture.name, url: picture.url})">Добавить картинку</button>
+                    </div>`,
+      });
+
+      Vue.component("picture-item", {
+        props: ["picture", "deletepicture", "index"],
+        template: `<div>
+                    <p>{{picture.name}}</p>
+                    <img :src="picture.url"></img>
+                    <button v-on:click="deletepicture(index)">Удалить картинку </button>
+                  </div>`,
+      });
+      Vue.component("gallery", {
+        template: `<div><add-in-gallery :addpicture="add"></add-in-gallery>
+      <div>
+        <picture-item
+          v-for="(picture, index) in pictures"
+          :key="picture.url + index"
+          :picture="picture"
+          :index="index"
+          :deletepicture="onDelete"
+        ></picture-item>
+      </div></div>`,
+        data: function () {
+          return {
+            pictures: [
+              { name: "Туман", url: "./img/fog.jpeg" },
+              { name: "Озеро", url: "./img/lake.jpeg" },
+              { name: "Лаванда", url: "./img/lavanda.jpeg" },
+              { name: "Люпины", url: "./img/lupin.jpeg" },
+              { name: "Маки", url: "./img/poppyseed.jpeg" },
+              { name: "Река", url: "./img/river.jpeg" },
+            ],
+          };
+        },
+        methods: {
+          add: function (picture) {
+            this.pictures.unshift(picture);
+          },
+          onDelete: function (index) {
+            this.pictures.splice(index, 1);
+          },
+        },
+      });
+      new Vue({
+        el: "#app",
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Домашняя работа 5(2)</title>
+  </head>
+  <body>
+    <div id="app">
+      <slider :slides="phrases"></slider>
+    </div>
+    <script>
+      Vue.component("slider", {
+        props: ["slides"],
+        data: function () {
+          return {
+            currentSlide: 0,
+            active: true,
+          };
+        },
+        template: `<transition name="fade">
+                        <div v-if="active">{{slides[currentSlide]}}</div>
+                    </transition>`,
+        mounted: function () {
+          setInterval(this.nextSlide, 2000);
+        },
+        methods: {
+          nextSlide() {
+            this.active = false;
+
+            setTimeout(this.activateSlide, 300);
+          },
+          activateSlide() {
+            if (this.currentSlide < this.slides.length - 1) {
+              this.currentSlide++;
+            } else {
+              this.currentSlide = 0;
+            }
+
+            this.active = true;
+          },
+        },
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          phrases: [
+            "А ларчик просто открывался",
+            "А он, мятежный, просит бури, Как будто в бурях есть покой!",
+          ],
+        },
+      });
+    </script>
+    <style>
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.3s;
+      }
+      .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+        opacity: 0;
+      }
+    </style>
+  </body>
+</html>
