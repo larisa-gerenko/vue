@@ -9,6 +9,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
   </head>
   <body>
     <div id="app">
@@ -19,21 +23,28 @@
           </li>
         </ul>
       </div>
-      <component v-bind:is="currentTabComponent"></component>
+      <transition
+        mode="out-in"
+        name="custom-classes-transition"
+        enter-active-class="animate__animated animate__bounceInLeft"
+        leave-active-class="animate__animated animate__bounceOutLeft"
+      >
+        <component v-bind:is="currentTabComponent"></component>
+      </transition>
     </div>
 
     <script>
       Vue.component("tab-главная", {
-        template: "<div>Компонент главной страницы</div>",
+        template: "<div >Компонент главной страницы</div>",
       });
       Vue.component("tab-проекты", {
-        template: "<div>Компонент страницы проектов</div>",
+        template: "<div >Компонент страницы проектов</div>",
       });
       Vue.component("tab-услуги", {
-        template: "<div>Компонент страницы услуг</div>",
+        template: "<div >Компонент страницы услуг</div>",
       });
       Vue.component("tab-контакты", {
-        template: "<div>Компонент страницы контактов</div>",
+        template: "<div >Компонент страницы контактов</div>",
       });
       new Vue({
         el: "#app",
