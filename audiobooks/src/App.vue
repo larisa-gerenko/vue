@@ -4,10 +4,10 @@
       <audio-player
         :audiotracks="[
           {name: 'Summer', src: 'https://www.bensound.com/bensound-music/bensound-summer.mp3', time: '2:43'},
-        {name: 'Ukulele', src: 'https://www.bensound.com/bensound-music/bensound-ukulele.mp3', time: '2:43'},
-        {name: 'Creative Minds', src: 'https://www.bensound.com/bensound-music/bensound-creativeminds.mp3', time: '2:43'},
-        {name: 'A New Beginning', src: 'https://www.bensound.com/bensound-music/bensound-anewbeginning.mp3', time: '2:43'},
-        {name: 'Little Idea', src: 'https://www.bensound.com/bensound-music/bensound-littleidea.mp3', time: '2:43'}]"
+        {name: 'Ukulele', src: 'https://www.bensound.com/bensound-music/bensound-ukulele.mp3', time: '3:28'},
+        {name: 'Creative Minds', src: 'https://www.bensound.com/bensound-music/bensound-creativeminds.mp3', time: '2:03'},
+        {name: 'A New Beginning', src: 'https://www.bensound.com/bensound-music/bensound-anewbeginning.mp3', time: '3:12'},
+        {name: 'Little Idea', src: 'https://www.bensound.com/bensound-music/bensound-littleidea.mp3', time: '2:34'}]"
       ></audio-player>
     </div>
   </div>

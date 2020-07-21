@@ -72,7 +72,6 @@ export default {
       this.currentTrack.src = src;
       this.currentTrack.play();
       this.currentIndex = index;
-
       this.currentTrack.onended = () => {
         this.nextTrack();
       };
