@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+    <title>Домашняя работа 5</title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="newGame">Новая игра</button>
+      <button v-on:click="shuffle">Перемешать</button>
+      <transition-group name="item" tag="div" class="container">
+        <div
+          v-on:click="checkNumber(item)"
+          v-for="item in items"
+          :key="item.value"
+          class="cell"
+          :style="{background: item.color, fontSize: item.fontSize, }"
+        >
+          {{item.value }}
+        </div>
+      </transition-group>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          current: 0,
+          items: [],
+        },
+
+        methods: {
+          checkNumber: function (item) {
+            if (item.value == this.current + 1) {
+              item.color = "black";
+              this.current++;
+            }
+          },
+          newGame: function () {
+            this.current = 0;
+            this.items = [];
+            for (let i = 1; i <= 100; i++) {
+              this.items.push({
+                value: i,
+                color: this.generateColor(),
+                fontSize: this.generateFont(10, 30),
+              });
+            }
+            this.shuffle();
+          },
+          shuffle: function () {
+            this.items = _.shuffle(this.items);
+          },
+
+          generateColor: function () {
+            return "#" + Math.floor(Math.random() * 16777215).toString(16);
+          },
+          generateFont: function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min + "px";
+          },
+        },
+      });
+    </script>
+    <style>
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 330px;
+        margin-top: 10px;
+      }
+      .cell {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border: 1px solid #aaa;
+      }
+
+      .item-move {
+        transition: transform 1s;
+      }
+    </style>
+  </body>
+</html>
